@@ -13,7 +13,7 @@ namespace MobileAppAPI.Models
 		public string FUNCTIONIDP { get; set; }
 		public string BRANCHIDP { get; set; }
 		public string RFQCODEP { get; set; }
-
+		public string REVISIONNO { get; set; }
 		public string FROMDATEP { get; set; }
 		public string TODATEP { get; set; }
 		public string ITEMCODEP { get; set; }

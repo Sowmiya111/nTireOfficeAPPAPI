@@ -2666,7 +2666,7 @@ namespace MobileAppAPI.Controllers
                     dbConn.Open();
                     string sql = "MBLE_ERP_RFQ_getvendorevaluationRFQs";
 
-                   // String sql = "MBL_ERP_RFQ_getvendorevaluationRFQ";
+                    // String sql = "MBL_ERP_RFQ_getvendorevaluationRFQ";
                     SqlCommand cmd = new SqlCommand(sql, dbConn);
                     // EXEC MBL_ERP_RFQ_getvendorevaluationRFQs '1','','','','','','','','','RFQ Raised','2','0','20','prs_id DESC','','286','1'
 
@@ -2684,7 +2684,7 @@ namespace MobileAppAPI.Controllers
                     cmd.Parameters.AddWithValue("@RFQToDate", data.rfqtodate);
                     cmd.Parameters.AddWithValue("@STATUS", "RFQ Raised");
                     cmd.Parameters.AddWithValue("@MODE", "1");
-                    cmd.Parameters.AddWithValue("@PAGEINDEX","0");
+                    cmd.Parameters.AddWithValue("@PAGEINDEX", "0");
                     cmd.Parameters.AddWithValue("@PAGESIZE", "20");
                     cmd.Parameters.AddWithValue("@SORTEXPRESSION", "prs_id DESC");
                     cmd.Parameters.AddWithValue("@ALPHANAME", "");
@@ -2895,6 +2895,9 @@ namespace MobileAppAPI.Controllers
         }
 
 
+
+
+
         //My approval screen search
 
         //getMailBoxHistory in old
@@ -2915,6 +2918,21 @@ namespace MobileAppAPI.Controllers
                 DataSet ds = new DataSet();
                 string QuerySecond = string.Empty;
                 string PKColumn = string.Empty;
+
+                string AstrFunction = "";
+                string AstrConfigId = "";
+                string AUsername = "";
+                string AstrWorkFlowNo = "";
+                string AstrFromDate = "";
+                string AstrToDate = "";
+                string AstrWFstatus = "";
+                string AstrMode = "";
+                string AstrUserId = "";
+                string Astrusertype = "";
+                string AQuery = "";
+                string AQuerySecond = "";
+                string APKColumn = "";
+                
                 try
                 {
                     string query = "select  BASEQUERY,PK_COLUMN_NAME1 from BO_WORKFLOW_CONFIGURATIONS WHERE WF_CONFIG_ID='" + strConfigId + "' and FUNCTION_ID='" + strFunction + "'";
@@ -2945,6 +2963,51 @@ namespace MobileAppAPI.Controllers
                         QuerySecond = "";
                         PKColumn = "";
                     }
+
+
+
+                    if (strFunction.ToString() == "0" || strFunction.ToString() == "" || strFunction.ToString() == string.Empty || strFunction.ToString() == null)
+                    {
+                        AstrFunction = "0";
+                    }
+                    if (strConfigId.ToString() == "0" || strConfigId.ToString() == "" || strConfigId.ToString() == string.Empty || strConfigId.ToString() == null)
+                    {
+                        AstrConfigId = "0";
+                    }
+                    if (Username.ToString() == "0" || Username.ToString() == "" || Username.ToString() == string.Empty || Username.ToString() == null)
+                    {
+                        AUsername = "0";
+                    }
+                    if (strWorkFlowNo.ToString() == "0" || strWorkFlowNo.ToString() == "" || strWorkFlowNo.ToString() == string.Empty || strWorkFlowNo.ToString() == null)
+                    {
+                        AstrWorkFlowNo = "0";
+                    }
+                    if (strFromDate.ToString() == "0" || strFromDate.ToString() == "" || strFromDate.ToString() == string.Empty || strFromDate.ToString() == null)
+                    {
+                        AstrFromDate = "0";
+                    }
+                    if (strToDate.ToString() == "0" || strToDate.ToString() == "" || strToDate.ToString() == string.Empty || strToDate.ToString() == null)
+                    {
+                        AstrToDate = "0";
+                    }
+                    if (strWFstatus.ToString() == "0" || strWFstatus.ToString() == "" || strWFstatus.ToString() == string.Empty || strWFstatus.ToString() == null)
+                    {
+                        AstrWFstatus = "0";
+                    }
+                    if (strMode.ToString() == "0" || strMode.ToString() == "" || strMode.ToString() == string.Empty || strMode.ToString() == null)
+                    {
+                        AstrMode = "0";
+                    }
+
+                    if (strUserId.ToString() == "0" || strUserId.ToString() == "" || strUserId.ToString() == string.Empty || strUserId.ToString() == null)
+                    {
+                        AstrUserId = "0";
+                    }
+                    if (strusertype.ToString() == "0" || strusertype.ToString() == "" || strusertype.ToString() == string.Empty || strusertype.ToString() == null)
+                    {
+                        Astrusertype = "0";
+                    }
+
                     TextInfo textInfo = new CultureInfo("en-US", false).TextInfo; // sudish
                     strQuery = strQuery.ToString();
                     strQuery = textInfo.ToTitleCase(strQuery.ToLower());
@@ -2955,19 +3018,19 @@ namespace MobileAppAPI.Controllers
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@strFunction", strFunction);
-                    cmd.Parameters.AddWithValue("@strConfigId", strConfigId);
-                    cmd.Parameters.AddWithValue("@Username", Username);
-                    cmd.Parameters.AddWithValue("@strWorkFlowNo", strWorkFlowNo);
-                    cmd.Parameters.AddWithValue("@strFromDate", strFromDate);
-                    cmd.Parameters.AddWithValue("@strToDate", strToDate);
-                    cmd.Parameters.AddWithValue("@strWFstatus", strWFstatus);
-                    cmd.Parameters.AddWithValue("@strMode", strMode);
-                    cmd.Parameters.AddWithValue("@strUserId", strUserId);
-                    cmd.Parameters.AddWithValue("@strusertype", strusertype);
-                    cmd.Parameters.AddWithValue("@Query", strQuery);
-                    cmd.Parameters.AddWithValue("@QuerySecond", QuerySecond);
-                    cmd.Parameters.AddWithValue("@PkColumn", PKColumn);
+                    cmd.Parameters.AddWithValue("@strFunction", AstrFunction);
+                    cmd.Parameters.AddWithValue("@strConfigId", AstrConfigId);
+                    cmd.Parameters.AddWithValue("@Username", AUsername);
+                    cmd.Parameters.AddWithValue("@strWorkFlowNo", AstrWorkFlowNo);
+                    cmd.Parameters.AddWithValue("@strFromDate", AstrFromDate);
+                    cmd.Parameters.AddWithValue("@strToDate", AstrToDate);
+                    cmd.Parameters.AddWithValue("@strWFstatus", AstrWFstatus);
+                    cmd.Parameters.AddWithValue("@strMode", AstrMode);
+                    cmd.Parameters.AddWithValue("@strUserId", AstrUserId);
+                    cmd.Parameters.AddWithValue("@strusertype", Astrusertype);
+                    cmd.Parameters.AddWithValue("@Query", AQuery);
+                    cmd.Parameters.AddWithValue("@QuerySecond", AQuerySecond);
+                    cmd.Parameters.AddWithValue("@PkColumn", APKColumn);
 
 
                     cmd.ExecuteNonQuery();
@@ -4586,7 +4649,7 @@ namespace MobileAppAPI.Controllers
         public async Task<ActionResult<ERP>> RaiseRFQ(dynamic data)
         {
             string prsids = "", itemids = "", ItemCodeAmount = "", ItemCode = "", Add = "", quotdate = "", rowid = "", itemid = "", itemcode = "";
-            string RFQCODE = "", RFQCODE1 = "", qty = "", branch = "", userid = "", ipaddress = "", Created_by = "", CheckIsSingleVendor = "", BranchID = "", RFQCode2="", CHECK="";
+            string RFQCODE = "", RFQCODE1 = "", qty = "", branch = "", userid = "", ipaddress = "", Created_by = "", CheckIsSingleVendor = "", BranchID = "", RFQCode2 = "", CHECK = "";
             int checkprs = 0, checkedcount = 0, CheckYCount = 0, CheckNCount = 0, CheckSingleCount = 0;
             string strBuyer = "";
             int countt = 0;
@@ -4685,7 +4748,7 @@ namespace MobileAppAPI.Controllers
                                     {
                                         Created_by = Value.ToString();
                                     }
-                                    if (Name== "RFQCode2")
+                                    if (Name == "RFQCode2")
                                     {
                                         RFQCode2 = Value.ToString();
                                     }
@@ -4701,7 +4764,7 @@ namespace MobileAppAPI.Controllers
                                 itemcode += ItemCode.ToString() + '|';
                                 ItemCodeAmount += ItemCode.ToString() + '~' + itemid.ToString() + '~' + qty.ToString() + '~' + branch.ToString() + '~' + prsid.ToString() + '~' + itemdesc1.ToString() + '~' + rowid.ToString() + '|';
                                 checkedcount++;
-                                 PRS_ID = Convert.ToInt32(prsid.ToString());
+                                PRS_ID = Convert.ToInt32(prsid.ToString());
                                 int ITEM_ID = Convert.ToInt32(itemid.ToString());
                                 BranchID = branch.ToString();
                                 CheckIsSingleVendor = "N";
@@ -4743,7 +4806,7 @@ namespace MobileAppAPI.Controllers
                     {
                         DataRow row = resultstempp.Rows[i];
                         CHECK = row[0].ToString();
-                       // RFQCODE1 = "RFQ/" + RFQCODE + "AT";
+                        // RFQCODE1 = "RFQ/" + RFQCODE + "AT";
 
                     }
 
@@ -5171,7 +5234,7 @@ namespace MobileAppAPI.Controllers
 
                                     if (Name == "functionid")
                                     {
-                                        if (Value.ToString()=="")
+                                        if (Value.ToString() == "")
                                         {
                                             functionid = null;
                                         }
@@ -5179,7 +5242,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             functionid = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "rfqcode")
                                     {
@@ -5192,7 +5255,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             rfqcode = Value.ToString();
                                         }
-                                        
+
                                     }
 
                                     if (Name == "vendorid")
@@ -5207,7 +5270,7 @@ namespace MobileAppAPI.Controllers
                                             vendorid = Value.ToString();
 
                                         }
-                                       
+
                                     }
                                     if (Name == "itemid")
                                     {
@@ -5221,7 +5284,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             itemid = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "itemcategory")
                                     {
@@ -5235,7 +5298,7 @@ namespace MobileAppAPI.Controllers
                                             itemcategory = Value.ToString();
 
                                         }
-                                       
+
                                     }
                                     if (Name == "itemsubcategory")
                                     {
@@ -5248,7 +5311,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             itemsubcategory = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "brand")
                                     {
@@ -5261,7 +5324,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             brand = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "model")
                                     {
@@ -5274,7 +5337,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             model = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "rating")
                                     {
@@ -5287,7 +5350,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             rating = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "mode")
                                     {
@@ -5300,7 +5363,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             mode = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "ipaddress")
                                     {
@@ -5313,7 +5376,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             ipaddress = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "unitprice")
                                     {
@@ -5325,7 +5388,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             unitprice = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "netamount")
                                     {
@@ -5337,7 +5400,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             netamount = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "discount")
                                     {
@@ -5350,7 +5413,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             discount = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "taxes")
                                     {
@@ -5363,7 +5426,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             taxes = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "transportcharges")
                                     {
@@ -5376,7 +5439,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             transportcharges = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "fromqty")
                                     {
@@ -5389,7 +5452,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             fromqty = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "toqty")
                                     {
@@ -5402,7 +5465,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             toqty = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "leadtime")
                                     {
@@ -5415,7 +5478,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             leadtime = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "itemcode")
                                     {
@@ -5428,7 +5491,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             itemcode = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "itemdesc1")
                                     {
@@ -5441,7 +5504,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             itemdesc1 = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "tamount")
                                     {
@@ -5454,7 +5517,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             tamount = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "qty")
                                     {
@@ -5467,7 +5530,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             qty = Value.ToString();
                                         }
-                                      
+
                                     }
                                     if (Name == "vendoritemid")
                                     {
@@ -5480,7 +5543,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             vendoritemid = Value.ToString();
                                         }
-                                       
+
                                     }
                                     if (Name == "prsid")
                                     {
@@ -5493,7 +5556,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             prsid = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "rOW_NUM")
                                     {
@@ -5505,7 +5568,7 @@ namespace MobileAppAPI.Controllers
                                         {
                                             rowid = Value.ToString();
                                         }
-                                        
+
                                     }
                                     if (Name == "userid")
                                     {
@@ -5519,7 +5582,7 @@ namespace MobileAppAPI.Controllers
                                             userid = Value.ToString();
 
                                         }
-                                        
+
                                     }
                                 }
 
@@ -5543,7 +5606,7 @@ namespace MobileAppAPI.Controllers
                                 cmd.Parameters.AddWithValue("@MODE", mode);
                                 cmd.Parameters.AddWithValue("@USERID", userid);
                                 cmd.Parameters.AddWithValue("@IPADDRESS", ipaddress);
-                                cmd.Parameters.AddWithValue("@UNIT_PRICE",Convert.ToDecimal(unitprice));
+                                cmd.Parameters.AddWithValue("@UNIT_PRICE", Convert.ToDecimal(unitprice));
                                 cmd.Parameters.AddWithValue("@NET_PRICE_PER_UNIT", Convert.ToDecimal(netamount));
                                 cmd.Parameters.AddWithValue("@DISCOUNT", Convert.ToDecimal(discount));
                                 cmd.Parameters.AddWithValue("@TAXES_AND_LEVIES ", Convert.ToDecimal(taxes));
@@ -5561,7 +5624,7 @@ namespace MobileAppAPI.Controllers
                                 cmd.Parameters.AddWithValue("@PRSDETAILSID", prsid);
 
 
-                               // cmd.ExecuteNonQuery();
+                                // cmd.ExecuteNonQuery();
                                 var reader = cmd.ExecuteReader();
                                 System.Data.DataTable results = new System.Data.DataTable();
                                 results.Load(reader);
@@ -7181,7 +7244,7 @@ namespace MobileAppAPI.Controllers
                                     //vel
 
 
-                                    
+
                                 }
 
 
@@ -7574,7 +7637,7 @@ namespace MobileAppAPI.Controllers
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@FUNCTIONID", data.functionid);
                 cmd.Parameters.AddWithValue("@POID", data.poid);
-               var reader = cmd.ExecuteReader();
+                var reader = cmd.ExecuteReader();
                 System.Data.DataTable results = new System.Data.DataTable();
                 results.Load(reader);
                 //string outputval = cmd.Parameters["@outputparam"].Value.ToString();
@@ -7585,7 +7648,7 @@ namespace MobileAppAPI.Controllers
 
                     dbConn.Close();
                 }
-                
+
                 var result = (new { logdata });
                 return Ok(Logdata1);
             }
@@ -7643,6 +7706,89 @@ namespace MobileAppAPI.Controllers
                 var result = (new { logdata });
                 return Ok(Logdata1);
             }
+        }
+
+        //sowmi23/11
+        [HttpPost]
+        [Route("vendor_paymentdata")]
+        public async Task<ActionResult<ERP>> vendor_paymentdata(ERP data)
+        {
+            // string struser = data.user_lower;
+
+            List<ERP> Logdata = new List<ERP>();
+            string Logdata1 = string.Empty;
+            var logdata = "";
+            var strtoken = "";
+            // var result = "";
+            using (SqlConnection dbConn = new SqlConnection(strconn))
+            {
+
+
+                DataSet dsuserdetails = new DataSet();
+                dbConn.Open();
+                string sql = "MBL_ERP_getSalesPaymentDeta2_New";
+                SqlCommand cmd = new SqlCommand(sql, dbConn);
+
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@POID", data.poid);
+                cmd.Parameters.AddWithValue("@REVISIONNO", "0");
+                cmd.Parameters.AddWithValue("@PAGEINDEX", "0");
+                cmd.Parameters.AddWithValue("@PAGESIZE", "500");
+                cmd.Parameters.AddWithValue("@SORTEXPRESSION", "po_id");
+                cmd.Parameters.AddWithValue("@ALPHANAME", "");
+                var reader = cmd.ExecuteReader();
+                System.Data.DataTable results = new System.Data.DataTable();
+                results.Load(reader);
+                //string outputval = cmd.Parameters["@outputparam"].Value.ToString();
+                for (int i = 0; i < results.Rows.Count; i++)
+                {
+                    DataRow row = results.Rows[i];
+                    Logdata1 = DataTableToJSONWithStringBuilder(results);
+                    dbConn.Close();
+                }
+                var result = (new { logdata });
+                return Ok(Logdata1);
+            }
+        }
+        //getapprovel
+        [HttpGet]
+        [Route("getapproval")]
+        public string getapproval(string prefixText, string sunctionid)
+        {
+
+
+
+            string Logdata1 = string.Empty;
+
+            using (SqlConnection dbConn = new SqlConnection(strconn))
+            {
+                dbConn.Open();
+                string query = "";
+                query = "select WF_CONFIG_DESC,WF_CONFIG_ID  from bo_workflow_configurations where WF_CONFIG_DESC in('Asset Transfer','Asset Service','ERP Purchase Request','ERP PO Request','ERP Confirm Vendor','Tendor','Supplier Registration','ERP Purchase Payment Invoice','Inter Location Transfer1','ERP MRS','Budget Approval','Asset Request') and FUNCTION_ID ='" + sunctionid + "' and status='A'";
+
+                SqlCommand cmd = new SqlCommand(query, dbConn);
+                var reader = cmd.ExecuteReader();
+                System.Data.DataTable results = new System.Data.DataTable();
+                results.Load(reader);
+                if (results.Rows.Count == 0)
+                {
+                    string st = "No data found";
+
+                    Logdata1 = new JavaScriptSerializer().Serialize(st);
+                }
+                else
+                {
+                    Logdata1 = DataTableToJSONWithStringBuilder(results);
+                }
+
+                dbConn.Close();
+
+                var result = (new { recordsets = Logdata1 });
+
+            }
+            return (Logdata1);
         }
 
 
@@ -8036,7 +8182,7 @@ namespace MobileAppAPI.Controllers
                 results.Load(reader);
                 for (int i = 0; i < results.Rows.Count; i++)
                 {
-                     DataRow row5 = results.Rows[i];
+                    DataRow row5 = results.Rows[i];
                     invoice_file_path = row5[0].ToString();
 
 
@@ -8045,16 +8191,16 @@ namespace MobileAppAPI.Controllers
                 var items = invoice_file_path.Split('_');
                 var pieces = invoice_file_path.Split('_', 2);
                 string invoice_file_name = items[1];
-               
+
 
                 filepath = URLprifix1 + invoice_file_name;
 
                 Logdata1 = filepath;
 
 
-              
-                    Logdata1 = DataTableToJSONWithStringBuilder(results);
-                
+
+                Logdata1 = DataTableToJSONWithStringBuilder(results);
+
 
                 dbConn.Close();
 
@@ -8386,7 +8532,7 @@ namespace MobileAppAPI.Controllers
 
 
 
-        
+
 
 
 
